@@ -34,9 +34,6 @@ app.get('/', authMiddleware, (req, res) => {
   res.json({ message: 'Welcome!' })
 })
 
-//test koneksi
-const db = require('./config/database');
-db.authenticate().then(() => console.log('Db terkoneksi'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

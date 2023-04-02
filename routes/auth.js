@@ -7,8 +7,7 @@ const router = express.Router();
 dotenv.config();
 
 router.post('/login', async (req, res) => {
-  let email = req.body.email;
-  let pass = req.body.password;
+  const { email, password } = req.body
 
   const user = await User.findOne({ where: { email } })
 
