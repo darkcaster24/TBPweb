@@ -6,10 +6,17 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var authRouter = require('./routes/auth');
+const authMiddleware = require('./middleware/authMiddleware');
 
 var app = express();
 
-// view engine setup
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+
+// // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -19,8 +26,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+
+app.get('/', authMiddleware, (req, res) => {
+  res.json({ message: 'Welcome!' })
+})
 
 //test koneksi
 const db = require('./config/database');

@@ -8,7 +8,7 @@ router.post('/', async (req, res, next) => {
     // Ambil data yang akan ditambahkan
     let name = req.body.name;
     let email = req.body.email;
-    let password = req.body.password;
+    let pass = req.body.password;
     let avatar = req.body.avatar;
     let active = req.body.active;
     
@@ -16,10 +16,10 @@ router.post('/', async (req, res, next) => {
     await User.create({
       name: name,
       email: email,
-      password: password,
+      pass: pass,
       avatar: avatar,
       active: active
-    }).then((res) => {
+    }).then((result) => {
       let response = {
         message: "Data berhasil ditambahkan",
       };

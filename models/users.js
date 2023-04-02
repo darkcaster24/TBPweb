@@ -27,12 +27,16 @@ const User = sequelize.define('User', {
     type: DataTypes.INTEGER,
     allowNull: true
   },
+  created_at:{
+    type: DataTypes.DATE
+  },
   updated_at:{
     type: DataTypes.DATE
   }
 },{
     tableName: 'user',
     timestamps: true,
+    createdAt: 'created_at',
     updatedAt: 'updated_at'
 });
 
