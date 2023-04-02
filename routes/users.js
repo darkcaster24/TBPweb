@@ -30,5 +30,62 @@ router.post('/', async (req, res, next) => {
     })
 });
 
+router.post('/reset-password', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(400).json({ message: 'User with this email does not exist.' });
+    }
+
+    const resetToken = Math.random().toString(36).substring(7);
+    const resetTokenExpiration = new Date(Date.now() + 36000000);
+    // TODO: send reset password email to user
+
+    await User.update({
+      resetToken,
+      resetTokenExpiration
+    }, { where: { email } });
+
+    return res.status(200).json({ message: 'Reset password token sent to your email.' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error.' });
+  }
+});
+
+router.post('/reset-password/:resetToken', async (req, res) => {
+  var { resetToken } = req.params;
+  const { pass } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { resetToken } });
+    // const user = await sequelize.query(`SELECT * FROM user WHERE resetToken = '${resetToken}' AND resetTokenExpiration > '${new Date().toISOString()}'`, { type: Sequelize.QueryTypes.SELECT });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid reset password token' });
+    }
+    if(new Date(user.resetTokenExpiration) < new Date()){
+      return res.status(400).json({ message: 'reset password token has expired.' });
+    }
+
+    const email = user.email;
+    resetToken = null;
+    const resetTokenExpiration = null;
+
+    await User.update({
+      pass,
+      resetToken,
+      resetTokenExpiration
+    }, { where: { email } });
+
+    //await sequelize.query(`UPDATE users SET password = '${password}', resetToken = null, resetTokenExpiration = null WHERE id = ${user[0].id}`);
+
+    return res.status(200).json({ message: 'Password reset successfully.' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error.' });
+  }
+});
 
 module.exports = router;
