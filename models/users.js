@@ -1,5 +1,5 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
-const sequelize = new Sequelize('mysql;//root@locahost/signing');
+const {Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
 const User = sequelize.define('User', {
   id: {
@@ -26,10 +26,14 @@ const User = sequelize.define('User', {
   active: {
     type: DataTypes.INTEGER,
     allowNull: true
+  },
+  updated_at:{
+    type: DataTypes.DATE
   }
 },{
     tableName: 'user',
-    timestamps: true
+    timestamps: true,
+    updatedAt: 'updated_at'
 });
 
-module.exports = User
+module.exports = User;
