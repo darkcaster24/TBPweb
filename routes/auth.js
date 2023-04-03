@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
     return res.status(401).json({ message: 'Password salah' });
   }
 
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' })
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '3h' })
   user.update({ active: true }); 
   res.json({ token })
 });
