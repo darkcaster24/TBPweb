@@ -19,12 +19,24 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false 
+  },
   avatar: {
     type: DataTypes.STRING,
     allowNull: true
   },
   active: {
     type: DataTypes.INTEGER,
+    allowNull: true
+  },
+  resetToken: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  resetTokenExpiration: {
+    type: DataTypes.DATE,
     allowNull: true
   },
   created_at:{
