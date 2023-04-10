@@ -8,24 +8,25 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 // Ragister
-router.post('/registration', async (req, res, next) => {
+router.post('/register', async (req, res, next) => {
     // Ambil data yang akan ditambahkan
     let name = req.body.name;
     let email = req.body.email;
     let pass = req.body.password;
+    let jabatan = req.body.jabatan;
     let avatar = req.body.avatar;
-    let active = req.body.active;
     
     // Tambahkan data ke dalam database
     await User.create({
       name: name,
       email: email,
       pass: pass,
-      avatar: avatar,
-      active: active
+      jabatan: jabatan,
+      avatar: avatar
+
     }).then((result) => {
       let response = {
-        message: "Data berhasil ditambahkan",
+        message: "Registration Succes",
       };
       res.json(response);
     }).catch((err) => {
@@ -99,7 +100,7 @@ router.get('/profil', authMiddleware, async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
   const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
   const user = await User.findByPk(decodedToken.userId, {
-    attributes: ['name', 'email', 'avatar']
+    attributes: ['name', 'email', 'jabatan', 'avatar']
   });
 
   res.json(user);
@@ -112,12 +113,14 @@ router.post('/profil/update',authMiddleware, async (req, res) => {
   const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
   const id = decodedToken.userId;
   let name = req.body.name;
+  let jabatan = req.body.jabatan;
   let avatar = req.body.avatar;
 
   try{
     const user = await User.findByPk(id);
     await User.update({
       name: name,
+      jabatan:jabatan,
       avatar: avatar
     }, { where: { id } });
 
@@ -129,7 +132,7 @@ router.post('/profil/update',authMiddleware, async (req, res) => {
 });
 
 //Change Password
-router.post('/change-pass/:id', async (req, res) => {
+router.post('/change-pass', authMiddleware,  async (req, res) => {
   const token = req.headers.authorization.split(' ')[1]
   const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
   const id = decodedToken.userId;

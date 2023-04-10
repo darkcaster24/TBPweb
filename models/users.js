@@ -15,13 +15,13 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false 
   },
+  jabatan: {
+    type: DataTypes.STRING,
+    allowNull: true 
+  },
   pass: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false 
   },
   avatar: {
     type: DataTypes.STRING,

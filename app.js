@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var docsRouter = require('./routes/docs');
 var authRouter = require('./routes/auth');
 const authMiddleware = require('./middleware/authMiddleware');
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/docs', docsRouter);
 
 app.get('/', authMiddleware, (req, res) => {
   res.json({ message: 'Welcome!' })
