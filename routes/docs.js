@@ -146,4 +146,17 @@ router.post('/sentback-doc', authMiddleware, upload.single('pdf'),  async (req, 
   })
 });
 
+//review document
+router.get('/review-doc/:id', async(req, res) => {
+  const id = req.params.id;
+  Doc.findByPk(id)
+    .then(pdf => {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.send(pdf.pdf);
+    })
+    .catch(error => {
+      res.status(500).json({ error: error });
+    });
+});
+
 module.exports = router;
