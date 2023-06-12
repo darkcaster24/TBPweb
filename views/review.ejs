@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Viewer</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    #pdf-container {
+      position: relative;
+      width: 100%;
+      height: 600px;
+    }
+
+    #signature-image {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 50px;
+      border: 1px solid red;
+      pointer-events: none; /* Mencegah gambar tandatangan terhalang oleh elemen lain */
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #39a839;">
+        <a class="navbar-brand" href="#">Signing Something</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item active mr-2">
+                <a class="nav-link" href="#">Inbox</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="#">Send</a>
+            </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Edit Profil</a>
+                <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </nav>
+
+  <div class="container mt-4">
+    <div id="pdf-container">
+      <img id="signature-image" src="/signatures/TTD.png">
+      <embed src="data:application/pdf;base64,<%= fileBuffer.toString('base64') %>" width="100%" height="600px" type="application/pdf" />
+    </div>
+  </div>
+
+ <!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<script>
+    const signatureImage = document.getElementById('signature-image');
+
+    signatureImage.addEventListener('mousedown', startDragging);
+    window.addEventListener('mouseup', stopDragging);
+
+    function startDragging(e) {
+        e.preventDefault();
+
+        const startX = e.clientX - signatureImage.offsetLeft;
+        const startY = e.clientY - signatureImage.offsetTop;
+
+        window.addEventListener('mousemove', dragImage);
+
+        function dragImage(e) {
+        e.preventDefault();
+
+        const newLeft = e.clientX - startX;
+        const newTop = e.clientY - startY;
+
+        signatureImage.style.left = `${newLeft}px`;
+        signatureImage.style.top = `${newTop}px`;
+        }
+    }
+
+    function stopDragging() {
+        window.removeEventListener('mousemove', dragImage);
+    }
+</script>
+</script>
+</body>
+</html>

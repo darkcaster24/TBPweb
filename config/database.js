@@ -5,7 +5,12 @@ const sequelize = require ("sequelize");
 const db = new sequelize('signing', 'root', '', {
     host: 'localhost',
     port: '3307',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+        options: {
+            maxAllowedPacket: 1073741824 // Nilai maksimum dalam byte (contoh: 1GB)
+        }
+    }
 });
  
 // export connection

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Frontend Express.js</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #39a839;">
+    <a class="navbar-brand" href="#">Signing Something</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item mr-2">
+            <a class="nav-link" href="/home">Home</a>
+        </li>
+        <li class="nav-item mr-2">
+            <a class="nav-link" href="/inbox">Inbox</a>
+        </li>
+        <li class="nav-item active mr-2">
+            <a class="nav-link" href="/send">Send</a>
+        </li>
+        <li class="nav-item dropdown mr-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profil
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/profil">Edit Profil</a>
+            <a class="dropdown-item" href="#">Logout</a>
+            </div>
+        </li>
+    </ul>
+</div>
+</nav>
+
+<div class="container mt-4">
+  <h3>Send</h3>
+  <form action="/docs/sent-doc" id="send-form" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="recipient">Penerima</label>
+      <select class="form-control" id="signer" name="signer">
+        <% user.forEach(function (item) { %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="filename" class="form-label">Nama File</label>
+        <input type="text" class="form-control" id="filename" name="filename" required>
+    </div>
+    <div class="form-group">
+        <label for="document">Document</label>
+        <input type="file" class="form-control-file" id="document" name="document" accept=".pdf">
+    </div>
+    <button type="submit" class="btn btn-primary">Kirim</button>
+  </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- File JavaScript terpisah -->
+</body>
+</html>
