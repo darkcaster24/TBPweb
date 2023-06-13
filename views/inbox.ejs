@@ -21,7 +21,7 @@
             <a class="nav-link" href="/docs/inbox">Inbox</a>
         </li>
         <li class="nav-item mr-2">
-            <a class="nav-link" href="/docs/sent-doc">Send</a>
+            <a class="nav-link" href="/docs/signer">Send</a>
         </li>
         <li class="nav-item dropdown mr-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,7 +55,7 @@
           <th><%= item.created_at%></th>
           <th><%= item.status%></th>
           <th>
-            <a class="btn btn-primary" href="/documents/<%= item.id %>">View</a>
+            <a class="btn btn-primary" href="/docs/review/<%= item.id %>">View</a>
           </th>
   
         </tr>

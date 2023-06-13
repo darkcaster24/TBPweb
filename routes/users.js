@@ -10,8 +10,6 @@ dotenv.config()
 
 const upload = multer();
 router.use(upload.any());
-// reset pass email
-let userEmail = '';
 
 //Login
 router.post('/test', async (req, res) => {
@@ -71,7 +69,7 @@ router.post('/reset-password', async (req, res) => {
       resetTokenExpiration
     }, { where: { email } });
 
-    res.redirect('/pass-token')
+    res.render('pass_token')
     // return res.status(200).json({ message: 'Reset password token sent to your email.' });
   } catch (error) {
     console.error(error);
@@ -92,10 +90,10 @@ router.post('/reset-password/token',async(req,res)=>{
       return res.status(400).json({ message: 'reset password token has expired.' });
     }
 
-    userEmail = user.email;
+    const userEmail = user.email;
     // resetToken = null;
     // const resetTokenExpiration = null;
-    res.redirect('/new-pass');
+    res.render('new_pass',{userEmail});
     // return res.status(200).json({ message: 'Password reset successfully.' });
   } catch (error) {
     console.error(error);
@@ -104,9 +102,9 @@ router.post('/reset-password/token',async(req,res)=>{
 })
 
 //Reset Password
-router.post('/reset-password/new-password', async (req, res) => {
+router.post('/reset-password/new-password/:email', async (req, res) => {
   let pass = req.body.password;
-  let email = userEmail;
+  let email = req.params.email;
   try {
     const user = await User.findOne({ where: { email} });
     // const user = await sequelize.query(`SELECT * FROM user WHERE resetToken = '${resetToken}' AND resetTokenExpiration > '${new Date().toISOString()}'`, { type: Sequelize.QueryTypes.SELECT });
@@ -120,7 +118,8 @@ router.post('/reset-password/new-password', async (req, res) => {
     }, { where: { email } });
 
     //await sequelize.query(`UPDATE users SET password = '${password}', resetToken = null, resetTokenExpiration = null WHERE id = ${user[0].id}`);
-    res.redirect('/');
+    // res.redirect('/');
+    return res.send("<script>window.location.href = '/';alert('Ubah Password Berhasil');</script>");
     // return res.status(200).json({ message: 'Password reset successfully.' });
   } catch (error) {
     console.error(error);

@@ -33,20 +33,16 @@ router.get('/change-pass', authMiddleware, (req, res) => {
   res.render( 'change_pass');
 });
 
-router.get('/review', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'review.html'));
-});
-
 router.get('/forgot-pass', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'forgot_pass.html'));
+  res.render('forgot_pass');
 });
 
 router.get('/pass-token', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'pass_token.html'));
+  res.render('pass_token');
 });
 
 router.get('/new-pass', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'new_pass.html'));
+  res.render('new_pass');
 });
 
 // router.get('/', function(req, res, next) {

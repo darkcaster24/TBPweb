@@ -54,11 +54,11 @@
       <tr>
         <th><%= item.filename%></th>
         <th><%= item.signer.name%></th>
-        <th><%= item.created_at%></th>
+        <th><%= item.created_at.toISOString().split('T')[0] %></th>
         <th><%= item.status%></th>
         <th>
-          <a class="btn btn-primary" href="/docs/review/<%= item.id %>">View</a>
-          <button class="btn btn-danger" onclick="">Delete</button>
+          <a class="btn btn-primary" href="/docs/home/review/<%= item.id %>">View</a>
+          <a class="btn btn-danger" href="/docs/decline/<%= item.id %>">Delete</a>
         </th>
 
       </tr>

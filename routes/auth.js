@@ -23,13 +23,15 @@ router.post('/login', async (req, res) => {
   const user = await User.findOne({ where: { email } })
 
   if (!user) {
-    return res.status(401).json({ message: 'Email salah' })
-    // return res.send("<script>alert('Email salah')</script>");
+    // return res.status(401).json({ message: 'Email salah' })
+    return res.send("<script>window.location.href = '/';alert('Email salah');</script>");
+
   }
 
   if (password !== user.pass) {
-    return res.status(401).json({ message: 'Password salah' });
-    // return res.send("<script>alert('Password salah')</script>");
+    // return res.status(401).json({ message: 'Password salah' });
+    return res.send("<script>window.location.href = '/';alert('Password salah');</script>");
+    // res.send("<script>window.alert('Password salah');</script>");
   }
 
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '3h' })
