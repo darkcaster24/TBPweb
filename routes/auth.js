@@ -34,6 +34,12 @@ router.post('/login', async (req, res) => {
     // res.send("<script>window.alert('Password salah');</script>");
   }
 
+  if (user.active) {
+    // return res.status(401).json({ message: 'Password salah' });
+    return res.send("<script>window.location.href = '/';alert('Akun Sedang Aktif!');</script>");
+    // res.send("<script>window.alert('Password salah');</script>");
+  }
+
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '3h' })
   user.update({ active: true }); 
   res.cookie('token', token, { httpOnly: true })
