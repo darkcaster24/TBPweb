@@ -30,42 +30,6 @@ app.set('view engine', 'ejs');
 // Mencoba front end
 app.use(express.urlencoded({ extended: false }));
 
-// app.get('/inbox', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'inbox.html'));
-// });
-
-// app.get('/send', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'send.html'));
-// });
-
-// app.get('/home', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'home.html'));
-// });
-
-// app.get('/register',(req, res) => {
-//   res.render('register');
-// });
-
-// app.get('/profil', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'profil.html'));
-// });
-
-// app.get('/review', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'review.html'));
-// });
-
-// app.get('/forgot-pass', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'forgot_pass.html'));
-// });
-
-// app.get('/pass-token', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'pass_token.html'));
-// });
-
-// app.get('/new-pass', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'new_pass.html'));
-// });
-
 app.post('/load-login', (req, res) => {
   const { email, password } = req.body;
   // Lakukan validasi email dan password di sini

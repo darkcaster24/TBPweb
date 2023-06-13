@@ -55,7 +55,7 @@
         <th><%= item.filename%></th>
         <th><%= item.signer.name%></th>
         <th><%= item.created_at.toISOString().split('T')[0] %></th>
-        <th><%= item.status%></th>
+        <th class="status"><%= item.status%></th>
         <th>
           <a class="btn btn-primary" href="/docs/home/review/<%= item.id %>">View</a>
           <a class="btn btn-danger" href="/docs/decline/<%= item.id %>">Delete</a>
@@ -78,7 +78,23 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+  // Mendapatkan semua elemen dengan class 'status'
+  const statusElements = document.getElementsByClassName('status');
 
+  // Iterasi melalui setiap elemen status
+  for (let i = 0; i < statusElements.length; i++) {
+    const statusElement = statusElements[i];
+    const statusValue = statusElement.innerText.trim();
+
+    // Periksa nilai status dan terapkan warna teks yang sesuai
+    if (statusValue === 'accept') {
+      statusElement.style.color = 'green';
+    } else if (statusValue === 'decline') {
+      statusElement.style.color = 'red';
+    }
+  }
+</script>
 
 </body>
 </html>
