@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Login</title>
+</head>
+<body>
+    
+ <div class="container">
+    <div class="box">
+        <!------------------ Login Box --------------------->
+        <div class="box-login" id="login">
+
+            <div class="top-header">
+                <h3>Login</h3>
+            </div>
+            <form action="/auth/login" method="post">
+            <div class="input-group">
+                <div class="input-field">
+                    <input type="text" class="input-box" id="logEmail" name="logEmail" required>
+                    <label for="logEmail">Email address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" class="input-box" id="logPassword" name="logPassword" required>
+                    <label for="logPassword">Password</label>
+                     <div class="eye-area">
+                            <div class="eye-box" onclick="myLogPassword()">
+                                <i class="fa-regular fa-eye" id="eye"></i>
+                                <i class="fa-regular fa-eye-slash" id="eye-slash"></i>
+                            </div>
+                     </div>
+                </div>
+                <div class="remember">
+                    <input type="checkbox" id="formCheck" class="check">
+                    <label for="formCheck"> Remember Me</label>
+                </div>
+
+                <div class="forgot">
+                    <a href="/forgot-pass">Forgot password?</a>
+                </div>
+
+                <div class="input-field">
+                    <input type="submit" class="input-submit" value="Sign In">
+                </div>
+                
+                <div class="register">
+                    <a>Don't have an account yet?</a>
+                    <a class="action" href="/register"> Sign Up</a>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+ </div>
+</body>
+</html>

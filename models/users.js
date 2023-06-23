@@ -23,8 +23,12 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  signature: {
+    type: DataTypes.BLOB,
+    allowNull: true
+  },
   avatar: {
-    type: DataTypes.STRING,
+    type: DataTypes.BLOB,
     allowNull: true
   },
   active: {

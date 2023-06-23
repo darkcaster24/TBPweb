@@ -5,9 +5,12 @@ dotenv.config()
 
 const authMiddleware = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1]
+    const token = req.cookies.token;
+    // const token = req.headers.authorization.split(' ')[1]
+    //const token = req.query.token;
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
     const user = await User.findOne({ where: { id: decodedToken.userId } })
+    console.log(token);
 
     if (!user) {
       throw new Error()
