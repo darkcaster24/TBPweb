@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Frontend Express.js</title>
+  <!-- Bootstrap CSS -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #029fcf;">
+    <a class="navbar-brand" href="/docs/home">Signing Something</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item mr-2">
+            <a class="nav-link" href="/docs/home">Home</a>
+        </li>
+        <li class="nav-item active mr-2">
+            <a class="nav-link" href="/docs/inbox">Inbox</a>
+        </li>
+        <li class="nav-item mr-2">
+            <a class="nav-link" href="/docs/signer">Send</a>
+        </li>
+        <li class="nav-item dropdown mr-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profil
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/users/profil">Edit Profil</a>
+              <a class="dropdown-item" href="/change-pass">Change Password</a>
+              <a class="dropdown-item" href="/auth/logout">Logout</a>
+            </div>
+        </li>
+    </ul>
+</div>
+</nav>
+
+<div class="container mt-4">
+  <!-- <h3="different-row">Inbox</h3> -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nama Dokumen</th>
+        <th>Pengirim</th>
+        <th>Tanggal Dikirim</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      <% if (documents) { %>
+        <% documents.forEach(function (item) { %>
+        <tr>
+          <th><%= item.filename%></th>
+          <th><%= item.sender.name%></th>
+          <th><%= item.created_at.toISOString().split('T')[0] %></th>
+          <th><%= item.status%></th>
+          <th>
+            <a class="btn btn-primary" href="/docs/review/<%= item.id %>">View</a>
+          </th>
+  
+        </tr>
+        <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="5">No documents available.</td>
+          </tr>
+        <% } %>
+    </thead>
+    <tbody id="inbox-table-body">
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- File JavaScript terpisah -->
+
+</body>
+</html>

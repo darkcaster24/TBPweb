@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forgot Password</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #029fcf;">
+        <a class="navbar-brand" href="/docs/home">Signing Something</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="/docs/home">Home</a>
+            </li>
+            <li class="nav-item mr-2">
+              <a class="nav-link" href="/docs/inbox">Inbox</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="/docs/signer">Send</a>
+            </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/users/profil">Edit Profil</a>
+                    <a class="dropdown-item" href="/change-pass">Change Password</a>
+                    <a class="dropdown-item" href="/auth/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </nav>
+    <div class="container">
+        <!-- <h1="different-row">Ganti Password</h1> -->
+        <form action="/users/change-pass" method="POST" id="newPasswordForm">
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="newPass" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="newPass" name="newPass" required>
+            </div>
+            <div class="mb-3">
+                <label for="confirm-password" class="form-label">Ulangi Password</label>
+                <input type="password" class="form-control" id="confirm-password" name="confirmPassword" required>
+            </div>
+            <!-- Alert for password mismatch -->
+            <div id="passwordMismatchAlert" class="alert alert-danger d-none" role="alert">
+                Konfirmasi password tidak sesuai.
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('newPasswordForm');
+        const passwordInput = document.getElementById('newPass');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const passwordMismatchAlert = document.getElementById('passwordMismatchAlert');
+
+        form.addEventListener('submit', function(event) {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                event.preventDefault(); // Prevent form submission
+                passwordMismatchAlert.classList.remove('d-none');
+            }else {
+                // Show success alert
+                window.alert('Perubahan Password berhasil!');
+            }
+        });
+    </script>
+</body>
+</html>

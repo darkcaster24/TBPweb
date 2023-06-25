@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Viewer</title> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    #pdf-container {
+      position: relative;
+      width: 100%;
+      height: 600px;
+    }
+
+    #signature-image {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 50px;
+      border: 1px solid red;
+      pointer-events: none; /* Mencegah gambar tandatangan terhalang oleh elemen lain */
+    }
+
+    body{
+    background: conic-gradient(from 224.57deg at 74.34% 57.07%, #02589F 0deg, #0285C7 15deg, #02AADF 46.87deg, #6CD0F3 159.37deg, #83D9DC 256.88deg, #ABE1CC 360deg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    }
+
+    .navbar{
+    width: 85%;
+    margin: auto;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    }
+    .navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+    }
+    .navbar ul li a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    }
+
+    .navbar ul li:hover::after{
+    width: 100%;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Signing Something</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="/docs/home">Home</a>
+            </li>
+            <li class="nav-item active mr-2">
+                <a class="nav-link" href="/docs/inbox">Inbox</a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="/docs/signer">Send</a>
+            </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/users/profil">Edit Profil</a>
+                  <a class="dropdown-item" href="/change-pass">Change Password</a>
+                  <a class="dropdown-item" href="/auth/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </nav>
+
+  <div class="container mt-4">
+    <div class="button-container mb-2">
+      <a class="btn btn-primary btn-lg mr-2" id="back-btn" href="/docs/home" style="width: 100px;">Back</a>
+      <form action="/docs/review/signing/<%=id%>" method="post">
+        <button class="btn btn-success btn-lg mr-2" type="submit" style="width: 100px;">Sign</button>
+      </form>
+      <a class="btn btn-danger btn-lg" id="delete" href="/docs/decline/<%=id%>" style="width: 100px;">Decline</a>
+    </div>
+    <div id="pdf-container">
+      <embed src="data:application/pdf;base64,<%= fileBuffer.toString('base64') %>" width="100%" height="600px" type="application/pdf" />
+    </div>
+    
+  </div>
+
+ <!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- <script>
+    const signatureImage = document.getElementById('signature-image');
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    signatureImage.addEventListener('mousedown', startDragging);
+    window.addEventListener('mouseup', stopDragging);
+
+    function startDragging(e) {
+        e.preventDefault();
+
+        isDragging = true;
+        offsetX = e.clientX - signatureImage.offsetLeft;
+        offsetY = e.clientY - signatureImage.offsetTop;
+
+        window.addEventListener('mousemove', dragImage);
+    }
+
+    function dragImage(e) {
+        e.preventDefault();
+
+        if (!isDragging) return;
+
+        const newLeft = e.clientX - offsetX;
+        const newTop = e.clientY - offsetY;
+
+        signatureImage.style.left = `${newLeft}px`;
+        signatureImage.style.top = `${newTop}px`;
+    }
+
+    function stopDragging() {
+        isDragging = false;
+        window.removeEventListener('mousemove', dragImage);
+    }
+</script> -->
+</body>
+</html>
