@@ -4,7 +4,7 @@ const sequelize = require ("sequelize");
 // create connection
 const db = new sequelize('signing', 'root', '', {
     host: 'localhost',
-    port: '3307',
+    port: '3306',
     dialect: 'mysql',
     dialectOptions: {
         options: {

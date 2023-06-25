@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Viewer</title>
+  <title>PDF Viewer</title> 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <style>
     #pdf-container {
@@ -22,6 +22,39 @@
       pointer-events: none; /* Mencegah gambar tandatangan terhalang oleh elemen lain */
     }
 
+    body{
+    background: conic-gradient(from 224.57deg at 74.34% 57.07%, #02589F 0deg, #0285C7 15deg, #02AADF 46.87deg, #6CD0F3 159.37deg, #83D9DC 256.88deg, #ABE1CC 360deg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    }
+
+    .navbar{
+    width: 85%;
+    margin: auto;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    }
+    .navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+    }
+    .navbar ul li a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    }
+
+    .navbar ul li:hover::after{
+    width: 100%;
+    }
+
     .container {
       display: flex;
       flex-direction: column;
@@ -36,7 +69,7 @@
   </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #39a839;">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">Signing Something</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

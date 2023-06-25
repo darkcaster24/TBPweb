@@ -17,7 +17,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 50vh;
 }
 .box{
     display: flex;
@@ -32,7 +32,34 @@ body{
     backdrop-filter: blur(15px);
     border: 3px solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
-
+}
+.box1{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding: 60px 20px 30px 20px;
+    height: 920px;
+    width: 550px;
+    background-color: rgba(255, 220, 220, 0.4);
+    border-radius: 30px;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+.box2{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding: 60px 20px 30px 20px;
+    height: 450px;
+    width: 350px;
+    background-color: rgba(255, 220, 220, 0.4);
+    border-radius: 30px;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
 }
 .box-login{
     position: absolute;
@@ -43,8 +70,7 @@ body{
 .box-register{
     position: absolute;
     width: 85%;
-    right: -350px;
-    transition: .5s ease-in-out; 
+    margin: auto; 
 }
 .top-header{
     text-align: center;
@@ -148,21 +174,6 @@ i{
     text-decoration: none;
     color: #000;
 }
-.register{
-    text-align: center;
-    font-size: 13px;
-    font: 500;
-    margin-top: 40px;
-}
-.register a {
-    text-decoration: none;
-    color: #000000;
-}
-.register .action{
-    text-shadow: #ffffff;
-    text-decoration: none;
-    color: #be5454;
-}
 .switch{
     display: flex;
     position: absolute;
@@ -202,11 +213,11 @@ i{
 .navbar{
     width: 85%;
     margin: auto;
-    padding: 35px 0;
+    padding: 5px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    
 }
 .navbar ul li {
     list-style: none;
@@ -216,96 +227,22 @@ i{
 }
 .navbar ul li a{
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
     text-transform: uppercase;
 }
-.navbar ul li ::after{
-    content: '';
-    height: 3px;
-    width: 100%;
-    background: #279574;
-    position: absolute;
-    left: 0%;
-    bottom: 0;
-    transition : 0.5s;
-}
+
 .navbar ul li:hover::after{
     width: 100%;
 }
-.content{
-    width: 100%;
-    position: absolute;
-    top: 30%;
-    transform: translateY(-50%);
-    text-align: center;
-    color: white;
-}
-.content h1{
-    font-size: 50px;
+  
+.different-row {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 20px;
 }
 .table{
+    margin: 100px;
     width: 50%;
     height: 50%;
     background-color: white;
 }
-/* Main */
-.main {
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 28px;
-    padding: 0 10px;
-    width: 58%;
-}
-
-.main h2 {
-    color: #333;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.main .card {
-    background-color: #fff;
-    border-radius: 18px;
-    box-shadow: 1px 1px 8px 0 grey;
-    height: auto;
-    margin-bottom: 20px;
-    padding: 20px 0 20px 50px;
-}
-
-.main .card table {
-    border: none;
-    font-size: 16px;
-    height: 270px;
-    width: 80%;
-}
-
-.edit {
-    position: absolute;
-    color: #e7e7e8;
-    right: 14%;
-}
-.main .card .input-field{
-    width: 30%;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-}
-.main .card .profile{
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-}
-.card b{
-    font-size: 20px;
-}
-.card p{
-    font-size: 12px;
-}
-.card img{
-    width: 80px;
-    height: 80px;
-}
-
-/* End */
